@@ -22,6 +22,19 @@ export class SignUpScreen extends Component {
         let successful = true;
         // Here make request to server to register user
         console.log("Signing up...");
+
+        const isEmail = this.verifyEmail(this.state.email);
+        const isPassword = this.verifyPassword(this.state.password);
+
+        if(!isEmail) {
+            Alert.alert("The email is not valid.");
+            return;
+        }
+        if(!isPassword) {
+            Alert.alert("The password should be longer than 8 characters");
+            return;
+        }
+
         fetch("https://damp-refuge-96622.herokuapp.com/user", {
             method: "POST",
             headers: {
@@ -43,6 +56,23 @@ export class SignUpScreen extends Component {
         }
 
     }
+
+    verifyEmail(email) {
+        var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log("Mail verif: " + email.match(pattern));
+        if(email.match(pattern) === null) {
+            return false;
+        }
+        return true;
+    }
+
+    verifyPassword(password) {
+        if(password.length < 8) {
+            return false;
+        }
+        return true;
+    }
+
 
     render() {
         return (

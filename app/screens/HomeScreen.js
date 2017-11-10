@@ -24,7 +24,7 @@ export class HomeScreen extends Component {
     const password = this.props.navigation.state.params.password;
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>Welcome back, {email}!</Text>
+        <Text style={styles.h1}>Welcome, {email}!</Text>
       </View>
     )
   }
