@@ -18,7 +18,6 @@ export class LoginScreen extends Component {
 
     login() {
         const {navigate} = this.props.navigation;
-        let verified = true;
 
         console.log("LOG");
         // Here make request to server to verify if user exists
@@ -35,19 +34,24 @@ export class LoginScreen extends Component {
                 }
             })
         })
-            .then((response) =>
-                response.json()
-            )
+            .then((response) => {
+                if (response.status == 201) {
+                    navigate('Home', {email: this.state.email, password: this.state.password});
+                    return response.json()
+
+                } else {
+                    Alert.alert("No user with this data.");
+                }
+            })
             .then((responseData) => {
                 console.log(responseData.jwt)
                 //TODO: do something with jwt. maybe store it.
             })
+            .catch((error) => {
+
+            })
             .done();
         // .....
-
-        if (verified) {
-            navigate('Home', {email: this.state.email, password: this.state.password});
-        }
     }
 
     goToSignUp() {
