@@ -59,9 +59,7 @@ export class LoginScreen extends Component {
         navigate('SignUp', {email: this.state.email, password: this.state.password});
     }
 
-
     render() {
-
         return (
             <View style={styles.mainView}>
                 <View style={styles.titleBox}>
@@ -100,7 +98,6 @@ export class LoginScreen extends Component {
                     <TouchableHighlight
                         style={styles.buttonSignIn}
                         onPress={() => {
-                            console.log("X");
                             this.login()
                         }}
                     >
@@ -179,40 +176,4 @@ const styles = StyleSheet.create({
     signUpText: {
         fontSize: 14,
     }
-
-});
-const sty = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-        marginBottom: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    row: {
-        flexDirection: 'row',
-    },
-    textlabel: {
-        fontSize: 20,
-        flex: 1,
-    },
-    textinput: {
-        flex: 2,
-        fontSize: 20,
-    },
-    h1: {
-        fontSize: 40,
-        textAlign: 'center',
-        margin: 10,
-    },
-    h2: {
-        fontSize: 30,
-        textAlign: 'center',
-        margin: 10,
-    },
-    item: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
 });
